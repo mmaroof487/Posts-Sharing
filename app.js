@@ -72,6 +72,7 @@ app.post("/post/create", isLoggedIn, async (req, res) => {
 	});
 	await user.posts.push(createdPost._id);
 	await user.save();
+	res.redirect("/posts");
 });
 
 app.get("/posts/like/:id", async (req, res) => {
@@ -85,7 +86,6 @@ app.get("/posts/like/:id", async (req, res) => {
 		post.likes.splice(user._id, 1);
 	}
 	await post.save();
-	console.log(post);
 	res.redirect("/posts");
 });
 
@@ -96,7 +96,11 @@ app.get("/posts/edit/:id", async (req, res) => {
 
 app.post("/post/edit/:id", async (req, res) => {
 	let edittedPost = await postModel.findOneAndUpdate({ _id: req.params.id }, { content: req.body.content }, { new: true });
-	console.log(edittedPost);
+	res.redirect("/posts");
+});
+
+app.get("/posts/delete/:id", async (req, res) => {
+	let post = await postModel.findOneAndDelete({ _id: req.params.id });
 	res.redirect("/posts");
 });
 
