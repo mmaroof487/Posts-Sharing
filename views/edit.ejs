@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://cdn.tailwindcss.com"></script>
+
+		<title>Document</title>
+	</head>
+	<body>
+		<main class="w-full p-8 h-screen text-white bg-zinc-900">
+			<div class="text-3xl">Edit Post</div>
+			<div class="mt-4">
+			<h2 class="text-sm mb-2 text-zinc-600">Uploaded on: <%=post.date%></h2>
+				<form action="/post/edit/<%=post._id%> " method="post">
+					<textarea name="content" name="new" class="resize-none w-1/2 p-4 bg-transparent border-2 border-zinc-700 outline-none" placeholder="<%=post.content%>""></textarea>
+					<input type="submit" value="Edit Post" class="block bg-blue-500 py-4 px-8 rounded-lg mt-3" />
+				</form>
+			</div>
+		</main>
+	</body>
+</html>
